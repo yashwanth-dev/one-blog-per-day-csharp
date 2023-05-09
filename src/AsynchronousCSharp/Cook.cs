@@ -4,12 +4,15 @@
 
 public class Cook
 {
-    public Cook()
+    public async Task PrepareBreakfast()
     {
         PourCoffee();
-        FryEggs();
-        FryBacon();
-        ToastBread();
+        var eggsTask = FryEggs();
+        var eggs = await eggsTask;
+        var baconTask = FryBacon();
+        var bacon = await baconTask;
+        var toastTask = ToastBread();
+        var toast = await toastTask;
         AddButterAndJam();
         PourOrangeJuice();
     }
@@ -19,19 +22,23 @@ public class Cook
         Console.WriteLine("Pour Coffee!!");
     }
 
-    public void FryEggs()
+    public async Task<string> FryEggs()
     {
         Console.WriteLine("Fried Eggs!!");
+        return "Eggs";
     }
 
-    public void FryBacon()
+    public async Task<string> FryBacon()
     {
         Console.WriteLine("Fried Bacon!!");
+        return "Bacon";
     }
 
-    public void ToastBread()
+    public async Task<string> ToastBread()
     {
         Console.WriteLine("Toasted bread!!");
+        AddButterAndJam();
+        return "Toast";
     }
 
     public void AddButterAndJam()
